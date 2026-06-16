@@ -3,9 +3,10 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
-
-    /* Entry animation */
-    animation: slideDown 0.6s ease;
+    position: relative;
+  position: relative;
+    z-index: 1000;
+ animation: slideDown 0.6s ease;
 }
 
 /* Logo */
@@ -14,7 +15,6 @@
     transition: transform 0.3s ease;
 }
 
-/* 🔥 Logo hover */
 .navbar .logo:hover{
     transform: scale(1.1);
 }
@@ -23,20 +23,21 @@
 .navbar-menu{
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 25px;
     color: #49557e;
     font-size: 18px;
 }
 
 /* Menu items */
-.navbar li{
-    cursor: pointer;
+.navbar-menu a{
+    text-decoration: none;
+    color: inherit;
     position: relative;
-    transition: color 0.3s ease;
+    cursor: pointer;
 }
 
-/* 🔥 Underline animation */
-.navbar li::after{
+/* Underline animation */
+.navbar-menu a::after{
     content: "";
     position: absolute;
     width: 0%;
@@ -47,24 +48,24 @@
     transition: 0.3s;
 }
 
-.navbar li:hover::after{
+.navbar-menu a:hover::after{
     width: 100%;
 }
 
-.navbar li:hover{
+.navbar-menu a:hover{
     color: tomato;
 }
 
-/* Menu icon */
-.navbar-menu-icon{
-    display: none;
+/* Active */
+.navbar .active{
+    border-bottom: 2px solid tomato;
 }
 
 /* Right side */
 .navbar-rights{
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
 }
 
 /* Button */
@@ -73,24 +74,16 @@
     color: #49557e;
     border: 1px solid tomato;
     font-size: 16px;
-    padding: 10px 30px;
+    padding: 10px 25px;
     border-radius: 50px;
     cursor: pointer;
-
     transition: all 0.3s ease;
 }
 
-/* 🔥 Button hover */
 .navbar button:hover{
     background-color: tomato;
     color: white;
     transform: scale(1.05);
-}
-
-/* Active menu */
-.navbar .active{
-    padding-bottom: 2px;
-    border-bottom: 2px solid tomato;
 }
 
 /* Search icon */
@@ -100,41 +93,70 @@
     transition: transform 0.3s ease;
 }
 
-/* 🔥 Icon hover */
 .navbar-search-icon:hover{
     transform: scale(1.2);
 }
 
-/* 🔥 Notification dot animation */
+/* Dot */
 .navbar-search-icon .dot{
     position: absolute;
     min-width: 10px;
     min-height: 10px;
     background-color: tomato;
     border-radius: 50%;
-    top: -8px;
-    right: -8px;
+    top: -6px;
+    right: -6px;
 
     animation: pulse 1.5s infinite;
 }
 
-/* 🔥 Pulse animation */
-@keyframes pulse{
-    0%{
-        transform: scale(1);
-        opacity: 1;
-    }
-    50%{
-        transform: scale(1.5);
-        opacity: 0.6;
-    }
-    100%{
-        transform: scale(1);
-        opacity: 1;
-    }
+/* Hamburger */
+.hamburger{
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+
 }
 
-/* 🔥 Navbar entry */
+/* Mobile Menu */
+.mobile-menu{
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 220px;
+    background: white;
+    color: black;
+    list-style: none;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+
+    transform: translateX(100%);
+    transition: 0.3s ease;
+}
+
+.mobile-menu a{
+    display: block;
+    margin: 12px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.mobile-menu.active{
+    display: block;
+    transform: translateX(0);
+}
+
+/* Animations */
+@keyframes pulse{
+    0%{ transform: scale(1); opacity: 1; }
+    50%{ transform: scale(1.5); opacity: 0.6; }
+    100%{ transform: scale(1); opacity: 1; }
+}
+
 @keyframes slideDown{
     from{
         opacity: 0;
@@ -146,58 +168,37 @@
     }
 }
 
-/* Responsive */
-@media (max-width:1200px) {
-    .navbar .logo{
-        width: 140px;
-    }
+/* RESPONSIVE */
+
+/* Tablet */
+@media (max-width:1024px){
     .navbar-menu{
-        gap: 20px;
+        gap: 18px;
         font-size: 17px;
     }
-    .navbar-rights{
-        gap: 30px;
-    }
-    .navbar-rights img{
-        width: 22px;
-    }
-    .navbar-rights button{
-        padding: 8px 25px;
-    }
-}
 
-@media (max-width:768px) { 
-    .navbar .logo{
-        width: 120px;
-    }
-    .navbar-menu{
-        gap: 15px;
-        font-size: 16px;
-    }
     .navbar-rights{
         gap: 20px;
     }
-    .navbar-rights img{
-        width: 20px;
-    }
-    .navbar-rights button{
-        padding: 7px 20px;
-        font-size: 15px;
-    }
 }
 
-@media (max-width:480px) {
-    .navbar-menu {
+/* Mobile */
+@media (max-width:768px){
+
+    .navbar-menu{
         display: none;
     }
-    .navbar-menu-icon {
+
+    .hamburger{
         display: block;
-        cursor: pointer;
-        transition: transform 0.3s ease;
     }
 
-    /* 🔥 Menu icon hover */
-    .navbar-menu-icon:hover{
-        transform: rotate(90deg);
+    .navbar button{
+        padding: 7px 18px;
+        font-size: 14px;
+    }
+
+    .navbar-rights img{
+        width: 20px;
     }
 }
