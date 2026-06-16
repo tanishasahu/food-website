@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     position: relative;
-  position: relative;
     z-index: 1000;
  animation: slideDown 0.6s ease;
 }
@@ -113,7 +112,7 @@
 /* Hamburger */
 .hamburger{
     display: none;
-    font-size: 28px;
+    font-size: 25px;
     cursor: pointer;
     position: relative;
     z-index: 1100;
