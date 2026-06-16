@@ -2,54 +2,205 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    padding: 20px 6vw;   /* 🔥 spacing improve */
+    animation: fadeInUp 0.8s ease;
 }
+
+/* Heading */
 .explore-menu h1{
     color: #262626;
     font-weight: 500;
+    font-size: 28px;
+
+    animation: fadeIn 1s ease;
 }
+
+/* Text */
 .explore-menu-text{
-    max-width: 100%;
-    columns: #808080;
+    max-width: 70%;   /* 💻 better readability */
+    color: #808080;
+    font-size: 15px;
+
+    animation: fadeIn 1.2s ease;
 }
+
+/* List */
 .explore-menu-list{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
     text-align: center;
-    margin: 20px;
-    overflow-x: scroll;
+    margin: 20px 0;
+
+    overflow-x: auto;   /* 🔥 better scroll */
+    scroll-behavior: smooth;
+
+    padding-bottom: 10px;
+
+    animation: slideLeft 0.8s ease;
 }
+
+/* Hide scrollbar */
 .explore-menu-list::-webkit-scrollbar{
     display: none;
 }
+
+/* Item */
+.explore-menu-list-item{
+    flex: 0 0 auto;   /* 🔥 fix scroll issue */
+    transition: transform 0.3s ease;
+}
+
+/* Hover */
+.explore-menu-list-item:hover{
+    transform: translateY(-8px);
+}
+
+/* Image */
 .explore-menu-list-item img{
-    width: 7.5vw;
-    min-width: 80px;
+    width: 6vw;
+    min-width: 70px;
     cursor: pointer;
     border-radius: 50%;
-  
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.explore-menu-list-item:hover img{
+    transform: scale(1.1);
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Text */
 .explore-menu-list-item p{
     margin-top: 10px;
     color: #747474;
-    font-size: max(1.4vw,16px);
+    font-size: 14px;
     cursor: pointer;
 
+    transition: color 0.3s ease;
 }
+
+.explore-menu-list-item:hover p{
+    color: tomato;
+}
+
+/* Divider */
 .explore-menu hr{
     margin: 10px 0px;
     height: 2px;
     background-color: #e2e2e2;
     border: none;
+
+    animation: fadeIn 1s ease;
 }
+
+/* Active */
 .explore-menu-list-item .active{
-    border: 4px solid tomato;
+    border: 3px solid tomato;
     padding: 2px;
+    border-radius: 50%;
+
+    animation: pulse 1.5s infinite;
 }
+
+/* Animations */
+@keyframes fadeInUp {
+    from{
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+}
+
+@keyframes slideLeft {
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.1); }
+    100%{ transform: scale(1); }
+}
+
+
+
+/* 💻 Laptop */
 @media (max-width:1200px) {
     .explore-menu-text{
-        max-width: 100%;
+        max-width: 80%;
         font-size: 14px;
+    }
+
+    .explore-menu-list-item img{
+        width: 7vw;
+    }
+}
+
+/* 📱 Tablet */
+@media (max-width:768px) {
+    .explore-menu{
+        padding: 20px 5vw;
+    }
+
+    .explore-menu-text{
+        max-width: 100%;
+        font-size: 13px;
+    }
+
+    .explore-menu h1{
+        font-size: 22px;
+    }
+
+    .explore-menu-list-item img{
+        width: 80px;
+    }
+
+    .explore-menu-list{
+        gap: 20px;
+    }
+}
+
+/* 📱 Mobile */
+@media (max-width:480px) {
+    .explore-menu{
+        padding: 15px 4vw;
+    }
+
+    .explore-menu h1{
+        font-size: 18px;
+    }
+
+    .explore-menu-text{
+        font-size: 12px;
+    }
+
+    .explore-menu-list-item img{
+        width: 65px;
+        min-width: 65px;
+    }
+
+    .explore-menu-list{
+        gap: 15px;
+    }
+
+    .explore-menu-list-item p{
+        font-size: 12px;
     }
 }

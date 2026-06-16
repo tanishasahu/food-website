@@ -3,10 +3,23 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
+
+    /* Entry animation */
+    animation: slideDown 0.6s ease;
 }
-.navbar.logo{
+
+/* Logo */
+.navbar .logo{
     width: 150px;
+    transition: transform 0.3s ease;
 }
+
+/* 🔥 Logo hover */
+.navbar .logo:hover{
+    transform: scale(1.1);
+}
+
+/* Menu */
 .navbar-menu{
     display: flex;
     list-style: none;
@@ -14,48 +27,128 @@
     color: #49557e;
     font-size: 18px;
 }
+
+/* Menu items */
+.navbar li{
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* 🔥 Underline animation */
+.navbar li::after{
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: tomato;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.navbar li:hover::after{
+    width: 100%;
+}
+
+.navbar li:hover{
+    color: tomato;
+}
+
+/* Menu icon */
 .navbar-menu-icon{
     display: none;
 }
+
+/* Right side */
 .navbar-rights{
     display: flex;
     align-items: center;
     gap: 40px;
 }
+
+/* Button */
 .navbar button{
     background: transparent;
-    color: #49557e ;
+    color: #49557e;
     border: 1px solid tomato;
     font-size: 16px;
     padding: 10px 30px;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.3s;
+
+    transition: all 0.3s ease;
 }
+
+/* 🔥 Button hover */
 .navbar button:hover{
-    background-color: #fff4f2;
+    background-color: tomato;
+    color: white;
+    transform: scale(1.05);
 }
+
+/* Active menu */
 .navbar .active{
     padding-bottom: 2px;
-    border: 2px solid #49557e;
+    border-bottom: 2px solid tomato;
 }
-.navbar li{
-    cursor: pointer;
-}
+
+/* Search icon */
 .navbar-search-icon{
     position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
+
+/* 🔥 Icon hover */
+.navbar-search-icon:hover{
+    transform: scale(1.2);
+}
+
+/* 🔥 Notification dot animation */
 .navbar-search-icon .dot{
     position: absolute;
     min-width: 10px;
     min-height: 10px;
     background-color: tomato;
-    border-radius: 5px;
+    border-radius: 50%;
     top: -8px;
     right: -8px;
+
+    animation: pulse 1.5s infinite;
 }
+
+/* 🔥 Pulse animation */
+@keyframes pulse{
+    0%{
+        transform: scale(1);
+        opacity: 1;
+    }
+    50%{
+        transform: scale(1.5);
+        opacity: 0.6;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 🔥 Navbar entry */
+@keyframes slideDown{
+    from{
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
 @media (max-width:1200px) {
-    .navbar.logo{
+    .navbar .logo{
         width: 140px;
     }
     .navbar-menu{
@@ -72,6 +165,7 @@
         padding: 8px 25px;
     }
 }
+
 @media (max-width:768px) { 
     .navbar .logo{
         width: 120px;
@@ -91,6 +185,7 @@
         font-size: 15px;
     }
 }
+
 @media (max-width:480px) {
     .navbar-menu {
         display: none;
@@ -98,5 +193,11 @@
     .navbar-menu-icon {
         display: block;
         cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    /* 🔥 Menu icon hover */
+    .navbar-menu-icon:hover{
+        transform: rotate(90deg);
     }
 }

@@ -1,5 +1,7 @@
 .header {
-   height: 34vw;  
+    width: 100%;
+    max-width: 1200px;   /* 💻 Laptop ke liye perfect width */
+    height: 420px;       /* fixed height instead of vw */
     margin: 30px auto;
     background-image: url('/header_img.png');
     background-repeat: no-repeat;
@@ -7,66 +9,146 @@
     background-position: center;
     position: relative;
     border-radius: 10px;
+    overflow: hidden;
+
+    animation: zoomBg 6s ease-in-out infinite alternate;
 }
+
+/* Content */
 .header-content{
     position: absolute;
-display: flex;
-flex-direction: column;
-align-items: start;
-gap: 1.5vw;
-max-width: 50%;
-bottom: 10%;
-left: 6vw;
-animation: fadeIn 3s;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+    max-width: 500px;
+    bottom: 40px;
+    left: 40px;
+
+    animation: fadeInUp 1s ease;
 }
+
+/* Heading */
 .header-content h2{
     font-weight: 500;
     color: white;
-    font-size: max(4.5vw,22px);
-}
-.header-content p{
-    color: white;
-    font-size: max(14px, 1vw);
+    font-size: 40px;
+    line-height: 1.2;
+
+    animation: slideLeft 1s ease;
 }
 
+/* Paragraph */
+.header-content p{
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
+
+    animation: fadeIn 1.5s ease;
+}
+
+/* Button */
 .header-content button{
     border: none;
     color: #747474;
     font-weight: 500;
-   padding: 1vw 2.3vw;
+    padding: 12px 25px;
     background-color: white;
-    font-size: max(1vw,13px);
+    font-size: 14px;
     border-radius: 50px;
-width: 150px;
+    width: 160px;
+    cursor: pointer;
 
+    transition: all 0.3s ease;
+    animation: fadeInUp 2s ease;
 }
+
+.header-content button:hover{
+    background-color: tomato;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* 🔥 Animations */
+@keyframes zoomBg {
+    from{ transform: scale(1); }
+    to{ transform: scale(1.05); }
+}
+
+@keyframes fadeInUp {
+    from{
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideLeft {
+    from{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+}
+
+
+
+
+
+
+/* 💻 Laptop (1024px - 1200px) */
 @media (max-width:1200px) {
     .header {
-        height: 40vw;
+        height: 380px;
     }
-    .header-content {
-        max-width: 50%;
+
+    .header-content h2 {
+        font-size: 34px;
     }
 }
+
+/* 📱 Tablet */
 @media (max-width:768px) {
-    .header-content {
-        max-width: 60%;
-    }
-
-    .header-content p {
-        font-size: 13px;
-    }
-}
-
-@media (max-width:480px) {
     .header {
-        height: 60vw;
+        height: 300px;
     }
 
     .header-content {
         max-width: 80%;
-        left: 5%;
-        bottom: 5%;
+        left: 20px;
+        bottom: 20px;
+    }
+
+    .header-content h2 {
+        font-size: 26px;
+    }
+
+    .header-content p {
+        font-size: 14px;
+    }
+}
+
+/* 📱 Mobile */
+@media (max-width:480px) {
+    .header {
+        height: 220px;
+    }
+
+    .header-content {
+        max-width: 90%;
+        left: 15px;
+        bottom: 15px;
     }
 
     .header-content h2 {
@@ -78,8 +160,8 @@ width: 150px;
     }
 
     .header-content button {
-        width: 100px;
-        height: 35px;
+        width: 120px;
+        padding: 8px 12px;
         font-size: 12px;
     }
 }
