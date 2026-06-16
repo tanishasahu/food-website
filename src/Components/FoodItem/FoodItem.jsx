@@ -2,12 +2,19 @@ import React, { useContext } from 'react'
 import './FoodItem.css'
 import { assets } from '../../assets/frontend_assets/assets'
 import { StoreContext } from '../../Context/StoreContext'
-
+import { motion } from "framer-motion";
 const FoodItem = ({ id, name, price, description, image }) => {
 
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
 
   return (
+    <motion.div
+ initial={{ opacity: 0, y: 50 }}
+ whileInView={{ opacity: 1, y: 0 }}
+ transition={{ duration: 0.5 }}
+  whileHover={{ scale: 1.05 }}>
+
+
     <div className='food-item'>
 
       <div className="food-item-img-container">
@@ -39,6 +46,8 @@ const FoodItem = ({ id, name, price, description, image }) => {
       </div>
 
     </div>
+      {/* card content */}
+</motion.div>
   )
 }
 
